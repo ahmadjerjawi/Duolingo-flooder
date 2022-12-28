@@ -8,10 +8,13 @@ email_prefix = input("Enter the email prefix (before the @): ")
 
 # Ask the user which server they want to use
 server = input("Enter the email server (gmail, yahoo, outlook, custom): ")
-if server == "custom":
+if server.lower() in ["gmail", "yahoo", "outlook"]:
+    server_domain = f"{server}.com"
+elif server.lower() == "custom":
     server_domain = input("Enter the custom server domain (e.g. example.com): ")
 else:
-    server_domain = f"{server}.com"
+    # Handle other server choices by using the first letter of the choice
+    server_domain = f"{server[0]}.com"
 
 # Read in the last modified number from the file, if it exists
 try:
